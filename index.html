@@ -3,120 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session Sign-In Sheet - Collaborating Wellness</title>
+    <title>Session Sign-In Sheet — Janice LaFountaine, LMFT</title>
+    <meta name="description" content="A pre-session reflection sheet for clients of Janice LaFountaine, LMFT. Capture your feelings, progress, and what you'd like to focus on before your session.">
+
+    <meta property="og:title" content="Session Sign-In Sheet — Janice LaFountaine, LMFT">
+    <meta property="og:description" content="A pre-session reflection sheet for clients.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.imgur.com/JwAdvDd.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            /* Feb 2026 palette — authoritative. Matches collaboratingwellness.com brand. */
+            --color-charcoal: #374151;       /* Primary text, headers, structure */
+            --color-dusty-rose: #D8A2A0;     /* Warm accent, CTA emphasis, underlines */
+            --color-luminous-pearl: #F0ECF7; /* Highlight box backgrounds */
+            --color-dusty-lavender: #C4B0D8; /* Box borders, accents */
+            --color-blush-lavender: #F5F0F8; /* Pull-quote backgrounds */
+            --color-pearl-white: #F5F3F8;    /* Page/section backgrounds */
+            --color-iris: #9B8EC4;           /* Hover states, sparing */
+            --color-whisper-grey: #EEEEF2;   /* Neutral section backgrounds */
+            --color-slate: #8B909A;          /* Secondary text, metadata */
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --radius-soft: 0.75rem;
+            --radius-pill: 9999px;
+            --shadow-soft: 0 4px 24px rgba(55, 65, 81, 0.06);
+            --shadow-medium: 0 8px 32px rgba(55, 65, 81, 0.08);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f0ed; /* Dusty background */
-            color: #374151;
+            font-family: var(--font-body);
+            line-height: 1.65;
+            background-color: var(--color-pearl-white);
+            color: var(--color-charcoal);
         }
-        
+
         h1, h2, h3, h4 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-heading);
+            color: var(--color-charcoal);
+            letter-spacing: -0.01em;
         }
-        
+
         .section-header {
             position: relative;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.75rem;
             margin-bottom: 1.5rem;
         }
-        
         .section-header::after {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 50px;
-            height: 3px;
-            background-color: #D1D5DB; /* Light Gray-Silver accent */
-            border-radius: 9999px;
+            width: 48px;
+            height: 2px;
+            background-color: var(--color-dusty-rose);
+            border-radius: var(--radius-pill);
         }
-        
+
         .journal-box {
-            background-color: #f0e8e6; /* Pale Rose background */
-            border-left: 4px solid #D1D5DB; /* Light Gray-Silver accent */
-            padding: 1.5rem;
-            border-radius: 0.75rem;
+            background-color: var(--color-luminous-pearl);
+            border: 1px solid var(--color-dusty-lavender);
+            padding: 1.75rem;
+            border-radius: var(--radius-soft);
             margin-bottom: 1.5rem;
         }
-        
+
+        .info-box {
+            background-color: var(--color-blush-lavender);
+            border: 1px solid var(--color-dusty-rose);
+            padding: 1.5rem;
+            border-radius: var(--radius-soft);
+        }
+
+        .divider-gradient {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, var(--color-dusty-rose), var(--color-dusty-lavender), var(--color-whisper-grey));
+            margin: 2.5rem 0;
+        }
+
         .journal-input {
             width: 100%;
             min-height: 3rem;
-            border: 1px solid #d1d5db;
-            background-color: #fff;
-            padding: 0.5rem;
-            border-radius: 0.375rem;
+            border: 1px solid var(--color-whisper-grey);
+            background-color: #ffffff;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
             resize: vertical;
-            transition: border-color 0.2s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            font-family: var(--font-body);
+            color: var(--color-charcoal);
         }
-        
         .journal-input:focus {
             outline: none;
-            border-color: #D1D5DB;
-            box-shadow: 0 0 0 3px rgba(209, 213, 219, 0.5);
+            border-color: var(--color-dusty-rose);
+            box-shadow: 0 0 0 3px rgba(216, 162, 160, 0.25);
         }
-        
+
+        input[type="date"], input[type="time"], input[type="text"], select {
+            border: 1px solid var(--color-whisper-grey) !important;
+            color: var(--color-charcoal);
+            font-family: var(--font-body);
+        }
+        input[type="date"]:focus, input[type="time"]:focus, input[type="text"]:focus, select:focus {
+            outline: none !important;
+            border-color: var(--color-dusty-rose) !important;
+            box-shadow: 0 0 0 3px rgba(216, 162, 160, 0.25) !important;
+        }
+
         .btn {
             transition: all 0.2s ease;
             font-weight: 500;
+            font-family: var(--font-body);
+            border-radius: var(--radius-pill);
+            padding: 0.5rem 1.125rem;
+            font-size: 0.875rem;
         }
-        
         .btn:hover {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-soft);
         }
-        
-        .info-box {
-            background: #fdfae9;
-            border: 1px solid #e6d8a2;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
+        .btn-primary {
+            background-color: var(--color-dusty-rose);
+            color: var(--color-charcoal);
         }
-        
+        .btn-primary:hover {
+            background-color: var(--color-iris);
+            color: #ffffff;
+        }
+        .btn-ghost {
+            background-color: var(--color-whisper-grey);
+            color: var(--color-charcoal);
+        }
+        .btn-ghost:hover {
+            background-color: var(--color-luminous-pearl);
+        }
+        .btn-danger {
+            background-color: #ffffff;
+            color: var(--color-dusty-rose);
+            border: 1px solid var(--color-dusty-rose);
+        }
+        .btn-danger:hover {
+            background-color: var(--color-blush-lavender);
+        }
+
         .save-indicator {
             position: fixed;
             top: 20px;
             right: 20px;
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: var(--radius-pill);
             font-size: 0.875rem;
             font-weight: 500;
             opacity: 0;
             transition: all 0.3s ease;
             z-index: 1000;
+            font-family: var(--font-body);
+            box-shadow: var(--shadow-soft);
         }
         .save-indicator.show { opacity: 1; }
-        .save-indicator.saved {
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
+        .save-indicator.saved,
+        .save-indicator.success {
+            background-color: var(--color-luminous-pearl);
+            color: var(--color-charcoal);
+            border: 1px solid var(--color-dusty-lavender);
         }
         .save-indicator.saving {
-            background-color: #fef3c7;
-            color: #92400e;
-            border: 1px solid #fde68a;
+            background-color: var(--color-whisper-grey);
+            color: var(--color-charcoal);
+            border: 1px solid var(--color-slate);
         }
         .save-indicator.error {
-            background-color: #FEE2E2;
-            color: #991B1B;
-            border: 1px solid #FECACA;
-        }
-        .save-indicator.success {
-            background-color: #D1FAE5;
-            color: #065F46;
-            border: 1px solid #A7F3D0;
+            background-color: var(--color-blush-lavender);
+            color: var(--color-charcoal);
+            border: 1px solid var(--color-dusty-rose);
         }
 
         .share-modal {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(55, 65, 81, 0.45);
+            backdrop-filter: blur(2px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -130,13 +204,14 @@
             visibility: visible;
         }
         .share-modal-content {
-            background: white;
+            background: #ffffff;
             padding: 2rem;
             border-radius: 1rem;
             max-width: 500px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: var(--shadow-medium);
         }
         .share-option {
             display: flex;
@@ -144,15 +219,20 @@
             width: 100%;
             padding: 1rem;
             margin-bottom: 0.75rem;
-            border-radius: 0.75rem;
-            border: none;
+            border-radius: var(--radius-soft);
+            border: 1px solid var(--color-whisper-grey);
+            background-color: var(--color-pearl-white);
+            color: var(--color-charcoal);
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: left;
+            font-family: var(--font-body);
         }
         .share-option:hover {
+            background-color: var(--color-luminous-pearl);
+            border-color: var(--color-dusty-lavender);
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-soft);
         }
         .share-option .icon {
             font-size: 1.5rem;
@@ -166,49 +246,108 @@
         }
         .share-option .description {
             font-size: 0.875rem;
-            opacity: 0.8;
+            color: var(--color-slate);
         }
-        
+
         .feelings-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 0.5rem;
         }
-        
         .feeling-item {
             display: flex;
             align-items: center;
             padding: 0.25rem;
-            font-size: 0.9rem;
+            font-size: 0.925rem;
         }
-        
         .feeling-item input[type="checkbox"] {
             margin-right: 0.5rem;
-            accent-color: #D1D5DB; /* Leaning on silver more here */
+            accent-color: var(--color-dusty-rose);
+            width: 1rem;
+            height: 1rem;
+            cursor: pointer;
         }
-        
-        .brand-logo {
+        .feeling-item:hover {
+            color: var(--color-iris);
+        }
+
+        .brand-header {
             text-align: center;
             margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
         }
-        
-        .brand-logo h1 {
-            color: #374151;
-            font-size: 2rem;
+        .brand-header img {
+            height: 6rem;
+            width: auto;
+            margin: 0 auto 0.75rem;
+            border-radius: var(--radius-pill);
+            box-shadow: var(--shadow-soft);
+        }
+        .brand-header .practice-name {
+            font-family: var(--font-heading);
+            color: var(--color-charcoal);
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.25rem;
+            letter-spacing: -0.01em;
         }
-        
-        .brand-subtitle {
-            color: #6B7280;
-            font-size: 0.9rem;
+        .brand-header .practice-tagline {
+            color: var(--color-slate);
+            font-size: 0.875rem;
             font-style: italic;
+            font-family: var(--font-body);
         }
-        
+
+        .brand-footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-whisper-grey);
+            font-size: 0.875rem;
+            color: var(--color-slate);
+            font-family: var(--font-body);
+        }
+        .brand-footer a {
+            color: var(--color-charcoal);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-color: var(--color-dusty-rose);
+        }
+        .brand-footer a:hover {
+            color: var(--color-iris);
+        }
+
+        label {
+            font-family: var(--font-body);
+            color: var(--color-charcoal);
+        }
+
         @media print {
             .no-print { display: none !important; }
-            body { background: white; }
-            .journal-box { background-color: #f9f9f9; }
+            body {
+                background: #ffffff;
+                font-size: 11pt;
+            }
+            .journal-box, .info-box {
+                background-color: #ffffff;
+                border: 1px solid #cccccc;
+                box-shadow: none;
+                break-inside: avoid;
+            }
+            .section-header::after {
+                background-color: #999999;
+            }
+            .divider-gradient {
+                background: #dddddd;
+            }
+            .brand-header img {
+                box-shadow: none;
+            }
+            .save-indicator, .share-modal { display: none !important; }
+            input, textarea, select {
+                border: 1px solid #cccccc !important;
+                box-shadow: none !important;
+            }
         }
     </style>
 </head>
@@ -221,284 +360,295 @@
     <div id="shareModal" class="share-modal">
         <div class="share-modal-content">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-semibold text-gray-800">Share Your Responses</h3>
-                <button onclick="closeShareModal()" class="text-gray-500 hover:text-gray-700 text-2xl close-button">&times;</button>
+                <h3 class="text-xl font-semibold" style="color: var(--color-charcoal);">Share Your Responses</h3>
+                <button onclick="closeShareModal()" class="text-2xl close-button" style="color: var(--color-slate);" aria-label="Close share dialog">&times;</button>
             </div>
-            <p class="text-gray-600 mb-4">Choose how you'd like to share your responses:</p>
-            
+            <p class="mb-4" style="color: var(--color-slate);">Choose how you'd like to share your responses:</p>
+
             <div class="space-y-3">
-                <button onclick="shareViaEmail()" class="share-option" style="background-color: #EFF6FF; color: #1D4ED8;">
-                    <span class="icon">📧</span>
+                <button onclick="shareViaEmail()" class="share-option">
+                    <span class="icon" aria-hidden="true">📧</span>
                     <div class="content">
                         <div class="title">Email</div>
                         <div class="description">Send via your email client</div>
                     </div>
                 </button>
-                
-                <button onclick="copyToClipboard()" class="share-option" style="background-color: #F0FDF4; color: #15803D;">
-                    <span class="icon">📋</span>
+
+                <button onclick="copyToClipboard()" class="share-option">
+                    <span class="icon" aria-hidden="true">📋</span>
                     <div class="content">
                         <div class="title">Copy to Clipboard</div>
                         <div class="description">Copy text to paste anywhere</div>
                     </div>
                 </button>
-                
-                <button onclick="shareViaWebAPI()" class="share-option" id="webShareButton" style="background-color: #FAF5FF; color: #7C3AED; display: none;">
-                    <span class="icon">🔗</span>
+
+                <button onclick="shareViaWebAPI()" class="share-option" id="webShareButton" style="display: none;">
+                    <span class="icon" aria-hidden="true">🔗</span>
                     <div class="content">
                         <div class="title">Share</div>
                         <div class="description">Use device sharing options</div>
                     </div>
                 </button>
-                
-                <button onclick="downloadFile()" class="share-option" style="background-color: #FFF7ED; color: #C2410C;">
-                    <span class="icon">💾</span>
+
+                <button onclick="downloadFile()" class="share-option">
+                    <span class="icon" aria-hidden="true">💾</span>
                     <div class="content">
                         <div class="title">Download File</div>
                         <div class="description">Save as text file</div>
                     </div>
                 </button>
             </div>
-            
-            <div class="mt-4 p-3 bg-yellow-50 rounded-lg">
-                <p class="text-sm text-yellow-700">
-                    <strong>Privacy Note:</strong> Your responses contain personal information. Share thoughtfully.
+
+            <div class="mt-4 p-3 rounded-lg" style="background-color: var(--color-blush-lavender); border: 1px solid var(--color-dusty-rose);">
+                <p class="text-sm" style="color: var(--color-charcoal);">
+                    <strong>Privacy note:</strong> Your responses contain personal information. Share thoughtfully.
                 </p>
             </div>
         </div>
     </div>
 
-    <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 my-6">
-        
-        <div class="brand-logo">
-            <img src="https://i.imgur.com/JwAdvDd.png" alt="Janice LaFountaine, MS, LMFT Logo" class="h-24 w-auto mx-auto rounded-full shadow-md">
-            <p class="brand-subtitle mt-2">Janice LaFountaine, MS, LMFT</p>
-        </div>
+    <main class="max-w-4xl mx-auto bg-white rounded-2xl p-8 my-6" style="box-shadow: var(--shadow-medium);">
 
-        <div class="no-print flex flex-wrap gap-3 mb-6 justify-end">
-            <button onclick="openShareModal()" class="btn px-4 py-2 bg-purple-100 text-purple-800 rounded-lg hover:bg-purple-200 transition-colors text-sm font-medium">
-                🔗 Share
-            </button>
-            <button onclick="exportData()" class="btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium">
-                📥 Export Responses
-            </button>
-            <button onclick="clearData()" class="btn px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors text-sm font-medium">
-                🗑️ Clear All
-            </button>
-            <button onclick="window.print()" class="btn px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors text-sm font-medium">
-                🖨️ Print
-            </button>
-        </div>
-
-        <header class="mb-8">
-            <h2 class="section-header text-3xl font-bold text-gray-800 mb-4">Session Sign-In Sheet</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Date:</label>
-                    <input type="date" data-key="session-date" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Session Time:</label>
-                    <input type="time" data-key="session-time" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
-                </div>
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">Client Name:</label>
-                <input type="text" data-key="client-name" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300" placeholder="Your name">
-            </div>
+        <header class="brand-header">
+            <img src="https://i.imgur.com/JwAdvDd.png" alt="Janice LaFountaine, LMFT">
+            <div class="practice-name">Janice LaFountaine, MS, LMFT</div>
+            <div class="practice-tagline">Trauma-informed therapy · Washington & Idaho</div>
         </header>
 
-        <div class="journal-box">
-            <h3 class="section-header text-xl font-semibold mb-4">How Are You Feeling Today?</h3>
-            <p class="text-sm text-gray-600 mb-4">Please check all emotions that apply to how you're feeling right now:</p>
-            
-            <div class="feelings-grid">
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-affectionate"> Affectionate</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-alert"> Alert</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-alive"> Alive</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-angry"> Angry</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-anxious"> Anxious</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-appreciative"> Appreciative</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-ashamed"> Ashamed</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-brave"> Brave</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-calm"> Calm</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-capable"> Capable</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-caring"> Caring</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-centered"> Centered</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-compassionate"> Compassionate</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-confident"> Confident</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-confused"> Confused</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-connected"> Connected</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-content"> Content</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-curious"> Curious</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-defeated"> Defeated</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-depressed"> Depressed</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-determined"> Determined</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-disappointed"> Disappointed</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-disconnected"> Disconnected</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-discouraged"> Discouraged</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-embarrassed"> Embarrassed</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-empowered"> Empowered</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-empty"> Empty</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-energized"> Energized</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-engaged"> Engaged</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-excited"> Excited</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-fearful"> Fearful</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-focused"> Focused</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-frustrated"> Frustrated</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-grateful"> Grateful</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-grieving"> Grieving</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-grounded"> Grounded</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-guilty"> Guilty</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-happy"> Happy</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-heartbroken"> Heartbroken</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-heavy"> Heavy</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-helpless"> Helpless</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-hopeful"> Hopeful</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-hopeless"> Hopeless</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-hurt"> Hurt</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-inspired"> Inspired</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-irritated"> Irritated</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-isolated"> Isolated</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-joyful"> Joyful</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-light"> Light</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-lonely"> Lonely</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-loved"> Loved</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-motivated"> Motivated</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-nervous"> Nervous</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-numb"> Numb</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-optimistic"> Optimistic</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-overwhelmed"> Overwhelmed</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-panicked"> Panicked</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-peaceful"> Peaceful</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-powerless"> Powerless</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-present"> Present</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-proud"> Proud</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-relaxed"> Relaxed</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-resentful"> Resentful</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-sad"> Sad</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-safe"> Safe</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-scared"> Scared</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-serene"> Serene</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-stressed"> Stressed</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-strong"> Strong</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-stuck"> Stuck</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-supported"> Supported</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-tense"> Tense</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-thankful"> Thankful</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-tired"> Tired</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-trapped"> Trapped</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-trusting"> Trusting</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-upset"> Upset</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-vulnerable"> Vulnerable</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-warm"> Warm</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-worried"> Worried</div>
-                <div class="feeling-item"><input type="checkbox" data-key="feeling-worthy"> Worthy</div>
+        <div class="no-print flex flex-wrap gap-3 mb-6 justify-end">
+            <button onclick="openShareModal()" class="btn btn-primary">
+                🔗 Share
+            </button>
+            <button onclick="exportData()" class="btn btn-ghost">
+                📥 Export
+            </button>
+            <button onclick="window.print()" class="btn btn-ghost">
+                🖨️ Print
+            </button>
+            <button onclick="clearData()" class="btn btn-danger">
+                🗑️ Clear All
+            </button>
+        </div>
+
+        <section class="mb-8">
+            <h2 class="section-header text-3xl font-bold">Session Sign-In Sheet</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Date</label>
+                    <input type="date" data-key="session-date" class="w-full p-2 rounded-md focus:outline-none focus:ring-2">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Session Time</label>
+                    <input type="time" data-key="session-time" class="w-full p-2 rounded-md focus:outline-none focus:ring-2">
+                </div>
             </div>
-            
+
+            <div>
+                <label class="block text-sm font-medium mb-1">Your Name</label>
+                <input type="text" data-key="client-name" class="w-full p-2 rounded-md focus:outline-none focus:ring-2" placeholder="Your name">
+            </div>
+        </section>
+
+        <section class="journal-box">
+            <h3 class="section-header text-xl font-semibold">How Are You Feeling Today?</h3>
+            <p class="text-sm mb-4" style="color: var(--color-slate);">Please check all emotions that apply to how you're feeling right now:</p>
+
+            <div class="feelings-grid">
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-affectionate"> Affectionate</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-alert"> Alert</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-alive"> Alive</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-angry"> Angry</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-anxious"> Anxious</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-appreciative"> Appreciative</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-ashamed"> Ashamed</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-brave"> Brave</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-calm"> Calm</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-capable"> Capable</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-caring"> Caring</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-centered"> Centered</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-compassionate"> Compassionate</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-confident"> Confident</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-confused"> Confused</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-connected"> Connected</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-content"> Content</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-curious"> Curious</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-defeated"> Defeated</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-depressed"> Depressed</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-determined"> Determined</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-disappointed"> Disappointed</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-disconnected"> Disconnected</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-discouraged"> Discouraged</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-embarrassed"> Embarrassed</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-empowered"> Empowered</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-empty"> Empty</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-energized"> Energized</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-engaged"> Engaged</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-excited"> Excited</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-fearful"> Fearful</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-focused"> Focused</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-frustrated"> Frustrated</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-grateful"> Grateful</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-grieving"> Grieving</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-grounded"> Grounded</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-guilty"> Guilty</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-happy"> Happy</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-heartbroken"> Heartbroken</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-heavy"> Heavy</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-helpless"> Helpless</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-hopeful"> Hopeful</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-hopeless"> Hopeless</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-hurt"> Hurt</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-inspired"> Inspired</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-irritated"> Irritated</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-isolated"> Isolated</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-joyful"> Joyful</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-light"> Light</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-lonely"> Lonely</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-loved"> Loved</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-motivated"> Motivated</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-nervous"> Nervous</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-numb"> Numb</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-optimistic"> Optimistic</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-overwhelmed"> Overwhelmed</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-panicked"> Panicked</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-peaceful"> Peaceful</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-powerless"> Powerless</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-present"> Present</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-proud"> Proud</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-relaxed"> Relaxed</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-resentful"> Resentful</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-sad"> Sad</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-safe"> Safe</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-scared"> Scared</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-serene"> Serene</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-stressed"> Stressed</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-strong"> Strong</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-stuck"> Stuck</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-supported"> Supported</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-tense"> Tense</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-thankful"> Thankful</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-tired"> Tired</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-trapped"> Trapped</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-trusting"> Trusting</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-upset"> Upset</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-vulnerable"> Vulnerable</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-warm"> Warm</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-worried"> Worried</label>
+                <label class="feeling-item"><input type="checkbox" data-key="feeling-worthy"> Worthy</label>
+            </div>
+
             <div class="mt-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Other feelings not listed:</label>
+                <label class="block text-sm font-medium mb-1">Other feelings not listed:</label>
                 <textarea data-key="other-feelings" class="journal-input" rows="2" placeholder="Describe any other feelings..."></textarea>
             </div>
-        </div>
+        </section>
 
-        <div class="journal-box">
-            <h3 class="section-header text-xl font-semibold mb-4">Goal Progress Since Last Session</h3>
-            
+        <section class="journal-box">
+            <h3 class="section-header text-xl font-semibold">Goal Progress Since Last Session</h3>
+
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">What have you accomplished toward your therapy goals since our last meeting?</label>
-                <p class="text-sm text-gray-500 mb-2 italic">Examples: practiced breathing techniques, had a difficult conversation, noticed negative thought patterns, used coping strategies, etc.</p>
+                <label class="block text-sm font-medium mb-2">What have you accomplished toward your therapy goals since our last meeting?</label>
+                <p class="text-sm mb-2 italic" style="color: var(--color-slate);">Examples: practiced breathing techniques, had a difficult conversation, noticed negative thought patterns, used coping strategies, etc.</p>
                 <textarea data-key="goal-progress" class="journal-input" rows="4" placeholder="Describe your progress..."></textarea>
             </div>
-            
+
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">What are you most proud of since our last session?</label>
+                <label class="block text-sm font-medium mb-2">What are you most proud of since our last session?</label>
                 <textarea data-key="proud-of" class="journal-input" rows="3" placeholder="Share what you're proud of..."></textarea>
             </div>
-        </div>
+        </section>
 
-        <div class="journal-box">
-            <h3 class="section-header text-xl font-semibold mb-4">Challenges and Session Focus</h3>
-            
+        <section class="journal-box">
+            <h3 class="section-header text-xl font-semibold">Challenges and Session Focus</h3>
+
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">What challenges have you faced since our last session?</label>
+                <label class="block text-sm font-medium mb-2">What challenges have you faced since our last session?</label>
                 <textarea data-key="challenges" class="journal-input" rows="3" placeholder="Describe any challenges..."></textarea>
             </div>
-            
+
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">What would you like to focus on or discuss in today's session?</label>
+                <label class="block text-sm font-medium mb-2">What would you like to focus on or discuss in today's session?</label>
                 <textarea data-key="session-focus" class="journal-input" rows="3" placeholder="What would you like to discuss today?"></textarea>
             </div>
-            
+
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Are there any specific situations, memories, or triggers you'd like to address today? (Potential EMDR targets)</label>
+                <label class="block text-sm font-medium mb-2">Are there any specific situations, memories, or triggers you'd like to address today? (Potential EMDR targets)</label>
                 <textarea data-key="emdr-targets" class="journal-input" rows="3" placeholder="Describe any specific memories or triggers..."></textarea>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Current stress level (1-10, with 10 being highest):</label>
-                    <select data-key="stress-level" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    <label class="block text-sm font-medium mb-1">Current stress level (1–10, with 10 being highest)</label>
+                    <select data-key="stress-level" class="w-full p-2 rounded-md focus:outline-none focus:ring-2">
                         <option value="">Select level</option>
-                        <option value="1">1 - Very Low</option>
+                        <option value="1">1 — Very Low</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5">5 - Moderate</option>
+                        <option value="5">5 — Moderate</option>
                         <option value="6">6</option>
                         <option value="7">7</option>
                         <option value="8">8</option>
                         <option value="9">9</option>
-                        <option value="10">10 - Very High</option>
+                        <option value="10">10 — Very High</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Current anxiety level (1-10, with 10 being highest):</label>
-                    <select data-key="anxiety-level" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-300">
+                    <label class="block text-sm font-medium mb-1">Current anxiety level (1–10, with 10 being highest)</label>
+                    <select data-key="anxiety-level" class="w-full p-2 rounded-md focus:outline-none focus:ring-2">
                         <option value="">Select level</option>
-                        <option value="1">1 - Very Low</option>
+                        <option value="1">1 — Very Low</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
-                        <option value="5">5 - Moderate</option>
+                        <option value="5">5 — Moderate</option>
                         <option value="6">6</option>
                         <option value="7">7</option>
                         <option value="8">8</option>
                         <option value="9">9</option>
-                        <option value="10">10 - Very High</option>
+                        <option value="10">10 — Very High</option>
                     </select>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="journal-box">
-            <h3 class="section-header text-xl font-semibold mb-4">Additional Notes</h3>
-            
+        <section class="journal-box">
+            <h3 class="section-header text-xl font-semibold">Additional Notes</h3>
+
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Is there anything else you would like me to know?</label>
+                <label class="block text-sm font-medium mb-2">Is there anything else you would like me to know?</label>
                 <textarea data-key="additional-notes" class="journal-input" rows="3" placeholder="Share any additional thoughts or concerns..."></textarea>
             </div>
-            
+
             <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Any changes in medications, sleep patterns, or major life events?</label>
+                <label class="block text-sm font-medium mb-2">Any changes in medications, sleep patterns, or major life events?</label>
                 <textarea data-key="life-changes" class="journal-input" rows="3" placeholder="Describe any changes..."></textarea>
             </div>
-        </div>
+        </section>
 
-        <div class="info-box mt-8 text-center">
-            <p class="text-sm text-gray-600 italic">Thank you for taking the time to complete this form. This information helps us make the most of our session together.</p>
-        </div>
-    </div>
+        <hr class="divider-gradient">
+
+        <aside class="info-box text-center">
+            <p class="italic" style="color: var(--color-charcoal);">Thank you for taking the time to reflect before our session. What you share here helps me meet you where you are.</p>
+        </aside>
+
+        <footer class="brand-footer">
+            <p>A client handout from <strong>Janice LaFountaine, LMFT</strong></p>
+            <p class="mt-1">
+                <a href="https://collaboratingwellness.com" target="_blank" rel="noopener">collaboratingwellness.com</a>
+                &nbsp;·&nbsp;
+                Trauma-informed therapy in Washington &amp; Idaho
+            </p>
+        </footer>
+
+    </main>
 
     <script>
-        // GLOBAL VARIABLES - MUST BE ACCESSIBLE TO onclick HANDLERS
         var saveTimeout;
         var saveIndicator;
         var saveText;
 
-        // GLOBAL FUNCTIONS - CRITICAL: Must be in window scope for onclick to work
         function openShareModal() {
             document.getElementById('shareModal').classList.add('show');
         }
@@ -510,10 +660,10 @@
         function showSaveIndicator(status) {
             saveIndicator.className = 'save-indicator show ' + status;
             var messages = {
-                saving: 'Auto-saving...',
+                saving: 'Auto-saving…',
                 saved: '✓ Saved',
                 success: '✓ Success',
-                error: '✗ Error'
+                error: 'Something went wrong'
             };
             saveText.textContent = messages[status] || status;
         }
@@ -554,13 +704,13 @@
                 var element = elements[i];
                 var key = element.getAttribute('data-key');
                 var value;
-                
+
                 if (element.type === 'checkbox') {
                     value = element.checked;
                 } else {
                     value = element.value.trim();
                 }
-                
+
                 if (value) {
                     data[key] = value;
                 }
@@ -571,13 +721,12 @@
         function formatDataForSharing() {
             var data = collectAllData();
             var date = new Date().toLocaleDateString();
-            
-            var shareText = 'SESSION SIGN-IN SHEET - COLLABORATING WELLNESS\n';
+
+            var shareText = 'SESSION SIGN-IN SHEET\n';
+            shareText += 'Janice LaFountaine, MS, LMFT · collaboratingwellness.com\n';
             shareText += 'Date: ' + date + '\n';
-            shareText += 'Therapist: Janice LaFountaine, MS, LMFT\n';
             shareText += '============================================================\n\n';
 
-            // Client Information
             if (data['client-name'] || data['session-date'] || data['session-time']) {
                 shareText += 'CLIENT INFORMATION\n';
                 shareText += '------------------\n';
@@ -587,7 +736,6 @@
                 shareText += '\n';
             }
 
-            // Feelings
             var feelings = [];
             for (var key in data) {
                 if (key.indexOf('feeling-') === 0 && data[key] === true) {
@@ -595,7 +743,7 @@
                     feelings.push(formattedFeeling.charAt(0).toUpperCase() + formattedFeeling.slice(1));
                 }
             }
-            
+
             if (feelings.length > 0 || data['other-feelings']) {
                 shareText += 'CURRENT FEELINGS\n';
                 shareText += '----------------\n';
@@ -608,7 +756,6 @@
                 shareText += '\n';
             }
 
-            // Goal Progress
             if (data['goal-progress'] || data['proud-of']) {
                 shareText += 'GOAL PROGRESS\n';
                 shareText += '-------------\n';
@@ -620,7 +767,6 @@
                 }
             }
 
-            // Challenges and Focus
             if (data['challenges'] || data['session-focus'] || data['emdr-targets'] || data['stress-level'] || data['anxiety-level']) {
                 shareText += 'CHALLENGES & SESSION FOCUS\n';
                 shareText += '--------------------------\n';
@@ -642,7 +788,6 @@
                 shareText += '\n';
             }
 
-            // Additional Notes
             if (data['additional-notes'] || data['life-changes']) {
                 shareText += 'ADDITIONAL NOTES\n';
                 shareText += '----------------\n';
@@ -656,7 +801,7 @@
 
             shareText += '============================================================\n';
             shareText += 'Generated: ' + date;
-            
+
             return shareText;
         }
 
@@ -666,10 +811,10 @@
                 var subject = encodeURIComponent('Session Sign-In Sheet Responses');
                 var body = encodeURIComponent(shareText);
                 var mailtoLink = 'mailto:?subject=' + subject + '&body=' + body;
-                
+
                 window.location.href = mailtoLink;
                 closeShareModal();
-                
+
                 showSaveIndicator('success');
                 setTimeout(function() { hideSaveIndicator(); }, 2000);
             } catch (error) {
@@ -682,7 +827,7 @@
         function copyToClipboard() {
             try {
                 var shareText = formatDataForSharing();
-                
+
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(shareText).then(function() {
                         closeShareModal();
@@ -731,7 +876,7 @@
 
             try {
                 var shareText = formatDataForSharing();
-                
+
                 navigator.share({
                     title: 'Session Sign-In Sheet Responses',
                     text: shareText
@@ -758,7 +903,7 @@
             try {
                 var shareText = formatDataForSharing();
                 var date = new Date().toISOString().split('T')[0];
-                
+
                 var blob = new Blob([shareText], { type: 'text/plain;charset=utf-8' });
                 var url = URL.createObjectURL(blob);
                 var a = document.createElement('a');
@@ -785,7 +930,7 @@
             try {
                 var exportText = formatDataForSharing();
                 var date = new Date().toISOString().split('T')[0];
-                
+
                 var blob = new Blob([exportText], { type: 'text/plain;charset=utf-8' });
                 var url = URL.createObjectURL(blob);
                 var a = document.createElement('a');
@@ -813,42 +958,38 @@
                     var element = elements[i];
                     var key = element.getAttribute('data-key');
                     localStorage.removeItem(key);
-                    
+
                     if (element.type === 'checkbox') {
                         element.checked = false;
                     } else {
                         element.value = '';
                     }
                 }
-                
+
                 showSaveIndicator('success');
                 setTimeout(function() { hideSaveIndicator(); }, 2000);
             }
         }
 
-        // INITIALIZATION - Use old-style JS for maximum compatibility
         document.addEventListener('DOMContentLoaded', function() {
             saveIndicator = document.getElementById('saveIndicator');
             saveText = document.getElementById('saveText');
-            
+
             loadSavedData();
-            
+
             if (navigator.share) {
-                document.getElementById('webShareButton').style.display = 'block';
+                document.getElementById('webShareButton').style.display = 'flex';
             }
-            
-            // Close modal on escape
+
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') closeShareModal();
             });
-            
-            // Close modal on backdrop click
+
             document.getElementById('shareModal').addEventListener('click', function(e) {
                 if (e.target === this) closeShareModal();
             });
         });
 
-        // AUTO-SAVE
         document.addEventListener('input', function(e) {
             if (e.target.matches && e.target.matches('textarea[data-key], input[data-key], select[data-key]')) {
                 showSaveIndicator('saving');
